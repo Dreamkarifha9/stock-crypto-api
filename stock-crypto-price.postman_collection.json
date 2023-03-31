@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "502cb785-94e9-40b3-8cad-99d05cc2cb77",
+		"name": "stock-crypto-price",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24196570"
+	},
+	"item": [
+		{
+			"name": "get-price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/stock/:ticker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stock",
+						":ticker"
+					],
+					"variable": [
+						{
+							"key": "ticker",
+							"value": "AAPL"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

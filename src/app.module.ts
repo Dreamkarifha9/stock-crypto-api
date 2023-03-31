@@ -1,10 +1,20 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { CacheModule, Module } from '@nestjs/common';
+
+import { StockController } from './stock/stock.controller';
+import { StockService } from './stock/stock.service';
+import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    CacheModule.register({
+      store: redisStore,
+      socket: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
+  ],
+  controllers: [StockController],
+  providers: [StockService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -45,6 +45,11 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Example
+
+import: file in to postman
+get-price: click send
+
 ## Test
 
 ```bash
