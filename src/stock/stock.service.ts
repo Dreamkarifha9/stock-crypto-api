@@ -12,12 +12,14 @@ export class StockService {
   async getStockPrice(ticker: string): Promise<any> {
     const cachedPrice = await this.getFromCache(ticker);
     console.log('cachedPrice', cachedPrice);
-    if (cachedPrice) {
+    if (cachedPrice !== undefined && cachedPrice !== null) {
       return { price: cachedPrice };
     }
 
     const quote = await yahooFinance.quote(ticker);
-    const { regularMarketPrice } = quote;
+    const { regularMarketPrice, currency } = quote;
+    console.log('regularMarketPrice', regularMarketPrice);
+    console.log('currency', currency);
 
     await this.saveToCache(ticker, regularMarketPrice);
 
@@ -29,6 +31,6 @@ export class StockService {
   }
 
   private async saveToCache(ticker: string, price: number) {
-    return await this.cacheManager.set(`${ticker}`, price, { ttl: 60 });
+    return await this.cacheManager.set(`${ticker}`, price, { ttl: 0 });
   }
 }
